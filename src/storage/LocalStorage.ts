@@ -27,12 +27,14 @@ export const addTransactionToStorage = ({
   euroValue,
   date,
 }: transitionProps): void => {
+  const newName = name.charAt(0).toUpperCase() + name.slice(1);
+
   localStorage.setItem(
     "transactions",
     JSON.stringify([
       {
         id: getTransactionsFromStorage() && generateTransactionId(),
-        transactionName: name,
+        name: newName,
         euroValue: euroValue,
         transactionDate: date,
       },
