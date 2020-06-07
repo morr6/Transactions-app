@@ -3,16 +3,23 @@ import { StyledButton } from "./Button.s";
 
 interface Props {
   text: string;
-  fc: (event?: MouseEvent) => void;
+  color?: "default" | "inherit" | "primary" | "secondary" | undefined;
+  fullWidth?: boolean;
+  click: (event?: MouseEvent) => void;
 }
 
-export const Button: React.FC<Props> = ({ text, fc }: Props) => {
+export const Button: React.FC<Props> = ({
+  text,
+  color,
+  fullWidth,
+  click,
+}: Props) => {
   return (
     <StyledButton
-      fullWidth
+      fullWidth={fullWidth}
       variant="outlined"
-      color="primary"
-      onClick={() => fc()}
+      color={color || "primary"}
+      onClick={() => click()}
     >
       {text}
     </StyledButton>
