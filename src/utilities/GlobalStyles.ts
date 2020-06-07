@@ -17,9 +17,9 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(
       to bottom right,
-      rgba(0, 0, 0, .1),
+      rgba(0, 0, 0, .15),
       rgba(0, 0, 0, .0),
-      rgba(0, 0, 0, .1)
+      rgba(0, 0, 0, .15)
     );
     background-repeat: no-repeat;
   }

@@ -3,6 +3,7 @@ import { Theme } from "utilities/Theme";
 
 export const ListWrapper = styled.div`
   height: ${window.innerHeight / 2}px;
+  margin-bottom: 2rem;
 `;
 
 export const Header = styled.div`

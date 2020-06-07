@@ -6,7 +6,7 @@ import {
   Input,
   StyledFormControl,
   ButtonsWrapper,
-} from "./AddTransaction.s";
+} from "./TransactionModal.s";
 
 import _ from "lodash";
 import {
@@ -22,7 +22,7 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import { useSelector, useDispatch } from "react-redux";
-import { toogleModal, addTransitions } from "addTransaction/Actions";
+import { toogleModal, addTransitions } from "transactionModal/Actions";
 
 import { setDate } from "utilities/dateHandler";
 
@@ -36,7 +36,7 @@ interface Transition {
   date: string;
 }
 
-export const AddTransactionModal: React.FC = () => {
+export const TransactionModal: React.FC = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector((store: Store) => store.isModalOpen);
 

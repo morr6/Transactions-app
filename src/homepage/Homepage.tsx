@@ -5,10 +5,10 @@ import { GridWrapper } from "./Homepage.s";
 import { Button } from "app/components/button/Button";
 import { CurrencyRate } from "currencyRate/CurrencyRate";
 import { TransactionList } from "transactionList/TransactionList";
-import { AddTransactionModal } from "addTransaction/AddTransaction";
+import { TransactionModal } from "transactionModal/TransactionModal";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toogleModal } from "addTransaction/Actions";
+import { toogleModal } from "transactionModal/Actions";
 
 interface Store {
   isModalOpen: boolean;
@@ -44,7 +44,7 @@ export const Homepage: React.FC = () => {
         <TransactionList />
       </Grid>
 
-      <AddTransactionModal />
+      <TransactionModal />
     </GridWrapper>
   );
 };
