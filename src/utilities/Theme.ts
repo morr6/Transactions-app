@@ -4,7 +4,7 @@ import grey from "@material-ui/core/colors/grey";
 export const Theme = {
   colors: {
     primaryColor: grey[50],
-    secondaryColor: grey[400],
+    secondaryColor: grey[500],
     white: "#ffffff",
     primaryGrey: "#8D8D8D",
     darkBlue: "#15151B",
@@ -13,7 +13,7 @@ export const Theme = {
     extraSmall: "1rem",
     small: "1.2rem",
     medium: "1.4rem",
-    large: "1.6rem",
+    large: "2rem",
     extraLarge: "4rem",
   },
   fontFamily: {},
