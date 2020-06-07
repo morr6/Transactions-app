@@ -9,7 +9,10 @@ import {
 } from "./AddTransaction.s";
 
 import _ from "lodash";
-import { getTransactionsFromStorage } from "storage/LocalStorage";
+import {
+  getTransactionsFromStorage,
+  addTransactionToStorage,
+} from "storage/LocalStorage";
 
 import { Button } from "app/components/button/Button";
 
@@ -19,7 +22,9 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import { useSelector, useDispatch } from "react-redux";
-import { toogleModal, addTransition } from "addTransaction/Actions";
+import { toogleModal, addTransitions } from "addTransaction/Actions";
+
+import { setDate } from "utilities/dateHandler";
 
 interface Store {
   isModalOpen: boolean;
@@ -28,38 +33,42 @@ interface Store {
 interface Transition {
   name: string;
   euroValue: number;
+  date: string;
 }
 
 export const AddTransactionModal: React.FC = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector((store: Store) => store.isModalOpen);
 
-  const [transition, setTransition] = useState<Transition | {}>({});
+  const [transition, setTransition] = useState<Transition>({
+    name: "",
+    euroValue: 0,
+    date: setDate(),
+  });
 
-  const closeModal = (): void => {
-    if (isModalOpen) {
-      dispatch(toogleModal());
-    }
-  };
-
-  const onTransactionAdd = (): void => {
-    closeModal();
+  const toggleModal = (): void => {
+    dispatch(toogleModal());
   };
 
   const onInputChange = (event): void => {
     setTransition({
-      ...transition!,
+      ...transition,
       [event.target.name]: event.target.value,
     });
   };
 
   const clearState = (): void => {
-    setTransition({});
+    setTransition({
+      name: "",
+      euroValue: 0,
+      date: setDate(),
+    });
   };
 
   const addTransaction = (): void => {
     if (!_.isEmpty(transition) && !_.some(transition, _.isEmpty)) {
-      dispatch(addTransition(getTransactionsFromStorage()));
+      addTransactionToStorage(transition);
+      dispatch(addTransitions(getTransactionsFromStorage()));
       dispatch(toogleModal());
 
       clearState();
@@ -67,7 +76,7 @@ export const AddTransactionModal: React.FC = () => {
   };
 
   return (
-    <Modal open={isModalOpen} onClose={closeModal}>
+    <Modal open={isModalOpen} onClose={toggleModal}>
       <ModalContent>
         <Title>Add new transaction</Title>
 
@@ -84,7 +93,6 @@ export const AddTransactionModal: React.FC = () => {
           <StyledFormControl fullWidth variant="outlined">
             <InputLabel htmlFor="outlined-adornment-amount">Value</InputLabel>
             <OutlinedInput
-              type="number"
               id="outlined-adornment-amount"
               startAdornment={
                 <InputAdornment position="start">€</InputAdornment>
@@ -92,12 +100,13 @@ export const AddTransactionModal: React.FC = () => {
               labelWidth={40}
               onChange={(event) => onInputChange(event)}
               name="euroValue"
+              type="number"
             />
           </StyledFormControl>
 
           <ButtonsWrapper>
             <Button text="add transaction" click={addTransaction} />
-            <Button text="cancel" click={onTransactionAdd} />
+            <Button text="cancel" click={toggleModal} />
           </ButtonsWrapper>
         </Form>
       </ModalContent>

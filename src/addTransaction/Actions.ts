@@ -1,10 +1,10 @@
-import { TOOGLE_MODAL, ADD_TRANSACTION, transitionsTypes } from "./Types";
+import { TOOGLE_MODAL, ADD_TRANSACTIONS, transactionsTypes } from "./Types";
 
-export const toogleModal = (): transitionsTypes => ({
+export const toogleModal = (): transactionsTypes => ({
   type: TOOGLE_MODAL,
 });
 
-export const addTransition = (transitions): transitionsTypes => ({
-  type: ADD_TRANSACTION,
-  transitions,
+export const addTransitions = (transactions): transactionsTypes => ({
+  type: ADD_TRANSACTIONS,
+  transactions,
 });

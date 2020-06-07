@@ -73,11 +73,6 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background: linear-gradient(
-    to bottom right,
-    rgb(81, 68, 255),
-    rgb(88, 0, 202)
-  );
   border-radius: 0.5rem;
   padding: 1rem;
 `;

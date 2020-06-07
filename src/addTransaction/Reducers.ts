@@ -1,13 +1,13 @@
-import { TOOGLE_MODAL, ADD_TRANSACTION, transitionsTypes } from "./Types";
+import { TOOGLE_MODAL, ADD_TRANSACTIONS, transactionsTypes } from "./Types";
 
 const initialState = {
   modal: false,
-  transitions: [],
+  transactions: [],
 };
 
 export const isModalOpen = (
   state = initialState.modal,
-  action: transitionsTypes
+  action: transactionsTypes
 ) => {
   switch (action.type) {
     case TOOGLE_MODAL:
@@ -17,13 +17,13 @@ export const isModalOpen = (
   }
 };
 
-export const transitions = (
-  state = initialState.transitions,
-  action: transitionsTypes
+export const transactions = (
+  state = initialState.transactions,
+  action: transactionsTypes
 ) => {
   switch (action.type) {
-    case ADD_TRANSACTION:
-      return action.transitions;
+    case ADD_TRANSACTIONS:
+      return action.transactions;
     default:
       return state;
   }
