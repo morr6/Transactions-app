@@ -9,7 +9,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
    body {
+    overflow: hidden;
     margin: 0;
+    max-height: ${window.outerHeight}px;
+    max-width: ${window.innerWidth}px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(
