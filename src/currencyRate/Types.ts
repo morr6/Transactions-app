@@ -5,8 +5,4 @@ interface setRate {
   plnRate: number;
 }
 
-export interface RateState {
-  plnRate: number;
-}
-
 export type RateActionType = setRate;

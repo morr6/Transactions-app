@@ -1,4 +1,4 @@
-import { SET_PLN_RATE, RateActionType, RateState } from "./Types";
+import { SET_PLN_RATE, RateActionType } from "./Types";
 
 const initialState: number = 0;
 
