@@ -1,10 +1,11 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
+import indigo from "@material-ui/core/colors/indigo";
 
 export const Theme = {
   colors: {
-    primaryColor: grey[50],
-    secondaryColor: grey[500],
+    primaryColor: indigo[600],
+    secondaryColor: grey[800],
     white: "#ffffff",
     primaryGrey: "#8D8D8D",
     darkBlue: "#15151B",
