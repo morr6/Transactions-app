@@ -8,6 +8,18 @@ export const GlobalStyle = createGlobalStyle`
       font-family: 'KoHo', sans-serif;
   }
 
+   body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(
+      to bottom right,
+      rgb(81, 68, 255),
+      rgb(88, 0, 202)
+    );
+    background-repeat: no-repeat;
+  }
+  
   button {
       cursor: pointer;
   }
