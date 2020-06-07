@@ -6,13 +6,9 @@ interface transitionProps {
 }
 
 export const getTransactionsFromStorage = () => {
-  try {
-    let transactions = JSON.parse(localStorage.getItem("transactions") || "{}");
+  let transactions = JSON.parse(localStorage.getItem("transactions") as string);
 
-    return transactions;
-  } catch (err) {
-    console.log(err);
-  }
+  return transactions;
 };
 
 export const initLocalStorage = (): void => {
