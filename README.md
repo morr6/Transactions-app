@@ -2,9 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 To run project follow the instructions
 
-Start with ### `Clone` 
+Start with `Clone` 
 
-Next install required packages with ### `yarn` or `npm install`
+Next install required packages with `yarn` or `npm install`
 
-Finally run on local server with ### `yarn start` or `npm run start`
+Finally run on local server with `yarn start` or `npm run start`
 
