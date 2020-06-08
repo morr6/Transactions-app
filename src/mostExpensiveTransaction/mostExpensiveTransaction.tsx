@@ -2,11 +2,12 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { Title, TransactionWrapper } from './mostExpensiveTransaction.s';
 import { useSelector } from 'react-redux';
-import { selectTransactions } from 'app/selectors/selectors';
+import { selectTransactions, selectPlnRate } from 'app/selectors/selectors';
 import { transaction } from 'app/selectors/selectors';
 
 export const MostExpensiveTransaction: React.FC = () => {
   const transactions = useSelector(selectTransactions);
+  const plnRate = useSelector(selectPlnRate);
 
   const getMostExpensiveTransaction = (): transaction => {
     return (
@@ -23,14 +24,17 @@ export const MostExpensiveTransaction: React.FC = () => {
       const { name, euroValue, date } = getMostExpensiveTransaction();
 
       return (
-        <Grid container>
-          <Grid item xs={5}>
+        <Grid container alignItems="center" justify="space-around">
+          <Grid item xs={6}>
             {name}
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             {Number(euroValue).toFixed(2)} EUR
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
+            {Number(euroValue * plnRate).toFixed(2)} PLN
+          </Grid>
+          <Grid item xs={2}>
             {date}
           </Grid>
         </Grid>

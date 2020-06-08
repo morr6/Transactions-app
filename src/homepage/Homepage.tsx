@@ -42,13 +42,10 @@ export const Homepage: React.FC = () => {
       <Grid item xs={3}>
         <CurrencyRate />
       </Grid>
-      <Grid item xs={5}>
-        <MostExpensiveTransaction />
-      </Grid>
 
-      <Grid item xs={8} container>
-        <Grid item md={7} />
-        <Grid item sm={2}>
+      <Grid item xs={5} container>
+        <Grid item md={3} />
+        <Grid item sm={4}>
           <Button
             text={deleteMode ? 'confirm' : 'add'}
             fullWidth
@@ -56,7 +53,7 @@ export const Homepage: React.FC = () => {
           />
         </Grid>
         <Grid item md={1} />
-        <Grid item sm={2}>
+        <Grid item sm={4}>
           <Button
             text={deleteMode ? 'cancel' : 'delete'}
             fullWidth
@@ -67,6 +64,10 @@ export const Homepage: React.FC = () => {
 
       <Grid item xs={8}>
         <TransactionList />
+      </Grid>
+
+      <Grid item xs={8}>
+        <MostExpensiveTransaction />
       </Grid>
 
       <TransactionModal />
