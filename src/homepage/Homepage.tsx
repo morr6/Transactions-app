@@ -13,6 +13,7 @@ import { toogleDeleteMode } from "./Actions";
 import {
   selectDeleteMode,
   selectIdsToDeleteArray,
+  selectTransactions,
 } from "app/selectors/selectors";
 
 import { clearIdTable } from "transactionList/components/transaction/Actions";
@@ -25,21 +26,20 @@ export const Homepage: React.FC = () => {
   const dispatch = useDispatch();
   const deleteMode = useSelector(selectDeleteMode);
   const idsToDelete = useSelector(selectIdsToDeleteArray);
+  const transactions = useSelector(selectTransactions);
 
-  const toogleModalHandler = () => {
+  const toogleModalHandler = (): void => {
     dispatch(toogleModal());
   };
 
-  const toogleDeleteModeHandler = () => {
+  const toogleDeleteModeHandler = (): void => {
     dispatch(toogleDeleteMode());
     dispatch(clearIdTable());
   };
 
-  const deleteTransaction = () => {
+  const deleteTransaction = (): void => {
     deleteTransactionFromStorage(idsToDelete);
-
     dispatch(addTransitions(getTransactionsFromStorage()));
-
     dispatch(clearIdTable());
     dispatch(toogleDeleteMode());
   };
@@ -49,6 +49,7 @@ export const Homepage: React.FC = () => {
       <Grid item xs={8}>
         <CurrencyRate />
       </Grid>
+
       <Grid item xs={8} container>
         <Grid item md={7} />
         <Grid item sm={2}>
