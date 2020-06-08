@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Grid } from '@material-ui/core';
 import { Theme } from 'utilities/Theme';
 
 export const Title = styled.h2`

@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from "react";
-import Pagination from "@material-ui/lab/Pagination";
-import { Grid } from "@material-ui/core";
-import {
-  ListWrapper,
-  Header,
-  NameWrapper,
-  SumValue,
-} from "./TransactionList.s";
-import { Transaction } from "./components/transaction/Transaction";
+import React, { useState, useEffect } from 'react';
+import Pagination from '@material-ui/lab/Pagination';
+import { Grid } from '@material-ui/core';
+import { ListWrapper, Header, NameWrapper, SumValue } from './TransactionList.s';
+import { Transaction } from './components/transaction/Transaction';
 
-import { useSelector } from "react-redux";
-import {
-  selectTransactions,
-  transaction,
-  selectPlnRate,
-} from "app/selectors/selectors";
+import { useSelector } from 'react-redux';
+import { selectTransactions, transaction, selectPlnRate } from 'app/selectors/selectors';
 
 export const TransactionList: React.FC = () => {
   const transactions = useSelector(selectTransactions);
@@ -41,7 +32,7 @@ export const TransactionList: React.FC = () => {
     return transactions.slice(start, end);
   };
 
-  const handlePageChange = (page): void => {
+  const handlePageChange = (page: number): void => {
     setPage(page);
   };
 
@@ -92,9 +83,7 @@ export const TransactionList: React.FC = () => {
           <SumValue>{countTransactionsSum().toFixed(2)} EUR</SumValue>
         </Grid>
         <Grid item xs={2}>
-          <SumValue>
-            {(countTransactionsSum() * plnRate).toFixed(2)} PLN
-          </SumValue>
+          <SumValue>{(countTransactionsSum() * plnRate).toFixed(2)} PLN</SumValue>
         </Grid>
       </Grid>
     </>
