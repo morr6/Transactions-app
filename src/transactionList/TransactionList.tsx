@@ -1,24 +1,14 @@
 import React, { useState } from "react";
 import Pagination from "@material-ui/lab/Pagination";
 import { Grid } from "@material-ui/core";
-import { ListWrapper, Header } from "./TransactionList.s";
+import { ListWrapper, Header, NameWrapper } from "./TransactionList.s";
 import { Transaction } from "./components/transaction/Transaction";
 
 import { useSelector } from "react-redux";
-
-interface transaction {
-  id: number;
-  name: string;
-  euroValue: number;
-  transactionDate: string;
-}
-
-interface Store {
-  transactions: transaction[];
-}
+import { selectTransactions, transaction } from "app/selectors/selectors";
 
 export const TransactionList: React.FC = () => {
-  const transactions = useSelector((store: Store) => store.transactions);
+  const transactions = useSelector(selectTransactions);
 
   const [page, setPage] = useState<number>(1);
 
@@ -38,7 +28,7 @@ export const TransactionList: React.FC = () => {
       <Header>
         <Grid container>
           <Grid item xs={6}>
-            NAME
+            <NameWrapper>NAME</NameWrapper>
           </Grid>
           <Grid item xs={2}>
             EUR

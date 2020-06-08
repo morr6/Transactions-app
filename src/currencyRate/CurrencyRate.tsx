@@ -5,15 +5,12 @@ import { toogleApiLoading } from "utilities/api/Actions";
 import { setPlnRate } from "./Actions";
 
 import { useSelector, useDispatch } from "react-redux";
-
-interface Store {
-  plnRate: number;
-}
+import { selectPlnRate } from "app/selectors/selectors";
 
 export const CurrencyRate: React.FC = () => {
   const dispatch = useDispatch();
 
-  const plnRate = useSelector((store: Store) => store.plnRate);
+  const plnRate = useSelector(selectPlnRate);
 
   const setRateToStore = () => {
     dispatch(toogleApiLoading());

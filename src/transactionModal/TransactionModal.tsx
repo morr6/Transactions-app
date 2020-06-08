@@ -26,21 +26,16 @@ import { toogleModal, addTransitions } from "transactionModal/Actions";
 
 import { setDate } from "utilities/dateHandler";
 
-interface Store {
-  isModalOpen: boolean;
-}
-
-interface Transition {
-  name: string;
-  euroValue: number;
-  date: string;
-}
+import {
+  selectIsModalOpen,
+  transaction as transitionType,
+} from "app/selectors/selectors";
 
 export const TransactionModal: React.FC = () => {
   const dispatch = useDispatch();
-  const isModalOpen = useSelector((store: Store) => store.isModalOpen);
+  const isModalOpen = useSelector(selectIsModalOpen);
 
-  const [transition, setTransition] = useState<Transition>({
+  const [transition, setTransition] = useState<transitionType>({
     name: "",
     euroValue: 0,
     date: setDate(),
