@@ -1,28 +1,40 @@
 import React from "react";
 import { TransitionWrapper } from "./Transaction.s";
 import { Grid } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addIdToDeleteArray, deleteTransactionIdFromArray } from "./Actions";
+import {
+  transaction,
+  selectPlnRate,
+  selectDeleteMode,
+  selectIdsToDeleteArray,
+} from "app/selectors/selectors";
 
 interface Props {
-  transaction: {
-    name: string;
-    euroValue: number;
-    transactionDate: string;
-    id?: number;
-  };
-}
-
-interface Store {
-  plnRate: number;
+  transaction: transaction;
 }
 
 export const Transaction: React.FC<Props> = ({ transaction }: Props) => {
-  const plnRate = useSelector((store: Store) => store.plnRate);
+  const dispatch = useDispatch();
 
-  const { name, euroValue, transactionDate } = transaction;
+  const plnRate = useSelector(selectPlnRate);
+  const deleteMode = useSelector(selectDeleteMode);
+  const idsToDelete = useSelector(selectIdsToDeleteArray);
 
+  const addTransactionIdToDelete = (id): void => {
+    if (deleteMode) {
+      if (idsToDelete.indexOf(id) === -1) dispatch(addIdToDeleteArray(id));
+      else dispatch(deleteTransactionIdFromArray(id));
+    }
+  };
+
+  const { name, euroValue, date, id } = transaction;
   return (
-    <TransitionWrapper>
+    <TransitionWrapper
+      shouldBeDeleted={idsToDelete.indexOf(id as number) !== -1}
+      deleteMode={deleteMode}
+      onClick={() => addTransactionIdToDelete(id)}
+    >
       <Grid container>
         <Grid item xs={6}>
           {name}
@@ -34,7 +46,7 @@ export const Transaction: React.FC<Props> = ({ transaction }: Props) => {
           {(euroValue * plnRate).toFixed(2)} PLN
         </Grid>
         <Grid item xs={2}>
-          {transactionDate}
+          {date}
         </Grid>
       </Grid>
     </TransitionWrapper>

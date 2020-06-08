@@ -14,3 +14,7 @@ export const Header = styled.div`
   margin-top: 5rem;
   padding-bottom: 1rem;
 `;
+
+export const NameWrapper = styled.span`
+  padding: 0 1rem;
+`;

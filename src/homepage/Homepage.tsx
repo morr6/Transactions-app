@@ -8,20 +8,40 @@ import { TransactionList } from "transactionList/TransactionList";
 import { TransactionModal } from "transactionModal/TransactionModal";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toogleModal } from "transactionModal/Actions";
+import { toogleModal, addTransitions } from "transactionModal/Actions";
+import { toogleDeleteMode } from "./Actions";
+import {
+  selectDeleteMode,
+  selectIdsToDeleteArray,
+} from "app/selectors/selectors";
 
-interface Store {
-  isModalOpen: boolean;
-}
+import { clearIdTable } from "transactionList/components/transaction/Actions";
+import {
+  deleteTransactionFromStorage,
+  getTransactionsFromStorage,
+} from "storage/LocalStorage";
 
 export const Homepage: React.FC = () => {
   const dispatch = useDispatch();
-  const isModalOpen = useSelector((store: Store) => store.isModalOpen);
+  const deleteMode = useSelector(selectDeleteMode);
+  const idsToDelete = useSelector(selectIdsToDeleteArray);
 
-  const openModal = () => {
-    if (!isModalOpen) {
-      dispatch(toogleModal());
-    }
+  const toogleModalHandler = () => {
+    dispatch(toogleModal());
+  };
+
+  const toogleDeleteModeHandler = () => {
+    dispatch(toogleDeleteMode());
+    dispatch(clearIdTable());
+  };
+
+  const deleteTransaction = () => {
+    deleteTransactionFromStorage(idsToDelete);
+
+    dispatch(addTransitions(getTransactionsFromStorage()));
+
+    dispatch(clearIdTable());
+    dispatch(toogleDeleteMode());
   };
 
   return (
@@ -32,11 +52,19 @@ export const Homepage: React.FC = () => {
       <Grid item xs={8} container>
         <Grid item md={7} />
         <Grid item sm={2}>
-          <Button text="add" fullWidth click={() => openModal()} />
+          <Button
+            text={deleteMode ? "confirm" : "add"}
+            fullWidth
+            click={deleteMode ? deleteTransaction : toogleModalHandler}
+          />
         </Grid>
         <Grid item md={1} />
         <Grid item sm={2}>
-          <Button text="delete" fullWidth click={() => console.log("delete")} />
+          <Button
+            text={deleteMode ? "cancel" : "delete"}
+            fullWidth
+            click={toogleDeleteModeHandler}
+          />
         </Grid>
       </Grid>
 
