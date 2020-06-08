@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/Transactions-app/static/js/main.2f6fa507.chunk.js",
-    "main.js.map": "/Transactions-app/static/js/main.2f6fa507.chunk.js.map",
+    "main.js": "/Transactions-app/static/js/main.d6317fe4.chunk.js",
+    "main.js.map": "/Transactions-app/static/js/main.d6317fe4.chunk.js.map",
     "runtime-main.js": "/Transactions-app/static/js/runtime-main.35245e43.js",
     "runtime-main.js.map": "/Transactions-app/static/js/runtime-main.35245e43.js.map",
     "static/js/2.dcd023b3.chunk.js": "/Transactions-app/static/js/2.dcd023b3.chunk.js",
     "static/js/2.dcd023b3.chunk.js.map": "/Transactions-app/static/js/2.dcd023b3.chunk.js.map",
     "index.html": "/Transactions-app/index.html",
-    "precache-manifest.996ec487e826fe93bac5ddffa88f4a89.js": "/Transactions-app/precache-manifest.996ec487e826fe93bac5ddffa88f4a89.js",
+    "precache-manifest.590a6ba29183d55a3d06634ffb59c6a3.js": "/Transactions-app/precache-manifest.590a6ba29183d55a3d06634ffb59c6a3.js",
     "service-worker.js": "/Transactions-app/service-worker.js",
     "static/js/2.dcd023b3.chunk.js.LICENSE.txt": "/Transactions-app/static/js/2.dcd023b3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.35245e43.js",
     "static/js/2.dcd023b3.chunk.js",
-    "static/js/main.2f6fa507.chunk.js"
+    "static/js/main.d6317fe4.chunk.js"
   ]
 }
