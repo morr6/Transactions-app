@@ -1,14 +1,14 @@
-import React from "react";
-import { TransitionWrapper } from "./Transaction.s";
-import { Grid } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
-import { addIdToDeleteArray, deleteTransactionIdFromArray } from "./Actions";
+import React from 'react';
+import { TransitionWrapper } from './Transaction.s';
+import { Grid } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
+import { addIdToDeleteArray, deleteTransactionIdFromArray } from './Actions';
 import {
   transaction,
   selectPlnRate,
   selectDeleteMode,
   selectIdsToDeleteArray,
-} from "app/selectors/selectors";
+} from 'app/selectors/selectors';
 
 interface Props {
   transaction: transaction;
@@ -21,7 +21,7 @@ export const Transaction: React.FC<Props> = ({ transaction }: Props) => {
   const deleteMode = useSelector(selectDeleteMode);
   const idsToDelete = useSelector(selectIdsToDeleteArray);
 
-  const addTransactionIdToDelete = (id): void => {
+  const addTransactionIdToDelete = (id: any): void => {
     if (deleteMode) {
       if (idsToDelete.indexOf(id) === -1) dispatch(addIdToDeleteArray(id));
       else dispatch(deleteTransactionIdFromArray(id));

@@ -39,7 +39,9 @@ export const TransactionModal: React.FC = () => {
     dispatch(toogleModal());
   };
 
-  const onInputChange = (event): void => {
+  const onInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ): void => {
     setTransition({
       ...transition,
       [event.target.name]: event.target.value,
