@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   ModalContent,
   Title,
@@ -6,37 +6,31 @@ import {
   Input,
   StyledFormControl,
   ButtonsWrapper,
-} from "./TransactionModal.s";
+} from './TransactionModal.s';
 
-import _ from "lodash";
-import {
-  getTransactionsFromStorage,
-  addTransactionToStorage,
-} from "storage/LocalStorage";
+import _ from 'lodash';
+import { getTransactionsFromStorage, addTransactionToStorage } from 'storage/LocalStorage';
 
-import { Button } from "app/components/button/Button";
+import { Button } from 'app/components/button/Button';
 
-import Modal from "@material-ui/core/Modal";
-import InputLabel from "@material-ui/core/InputLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import Modal from '@material-ui/core/Modal';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
-import { useSelector, useDispatch } from "react-redux";
-import { toogleModal, addTransitions } from "transactionModal/Actions";
+import { useSelector, useDispatch } from 'react-redux';
+import { toogleModal, addTransitions } from 'transactionModal/Actions';
 
-import { setDate } from "utilities/dateHandler";
+import { setDate } from 'utilities/dateHandler';
 
-import {
-  selectIsModalOpen,
-  transaction as transitionType,
-} from "app/selectors/selectors";
+import { selectIsModalOpen, transaction as transitionType } from 'app/selectors/selectors';
 
 export const TransactionModal: React.FC = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectIsModalOpen);
 
   const [transition, setTransition] = useState<transitionType>({
-    name: "",
+    name: '',
     euroValue: 0,
     date: setDate(),
   });
@@ -54,7 +48,7 @@ export const TransactionModal: React.FC = () => {
 
   const clearState = (): void => {
     setTransition({
-      name: "",
+      name: '',
       euroValue: 0,
       date: setDate(),
     });
@@ -89,9 +83,7 @@ export const TransactionModal: React.FC = () => {
             <InputLabel htmlFor="outlined-adornment-amount">Value</InputLabel>
             <OutlinedInput
               id="outlined-adornment-amount"
-              startAdornment={
-                <InputAdornment position="start">€</InputAdornment>
-              }
+              startAdornment={<InputAdornment position="start">€</InputAdornment>}
               labelWidth={40}
               onChange={(event) => onInputChange(event)}
               name="euroValue"

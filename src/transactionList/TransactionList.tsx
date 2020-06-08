@@ -1,16 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "@material-ui/lab/Pagination";
 import { Grid } from "@material-ui/core";
-import { ListWrapper, Header, NameWrapper } from "./TransactionList.s";
+import {
+  ListWrapper,
+  Header,
+  NameWrapper,
+  SumValue,
+} from "./TransactionList.s";
 import { Transaction } from "./components/transaction/Transaction";
 
 import { useSelector } from "react-redux";
-import { selectTransactions, transaction } from "app/selectors/selectors";
+import {
+  selectTransactions,
+  transaction,
+  selectPlnRate,
+} from "app/selectors/selectors";
 
 export const TransactionList: React.FC = () => {
   const transactions = useSelector(selectTransactions);
+  const plnRate = useSelector(selectPlnRate);
 
   const [page, setPage] = useState<number>(1);
+
+  useEffect(() => {
+    const updateCurrentPage = () => {
+      const pageCount: number = Math.ceil(transactions.length / 6);
+
+      if (page > pageCount && pageCount !== 0) {
+        setPage(pageCount);
+      }
+    };
+
+    updateCurrentPage();
+  }, [transactions]);
 
   const slicedTransactions = (): Array<transaction> => {
     const start: number = page === 1 ? 0 : (page - 1) * 6;
@@ -19,8 +41,16 @@ export const TransactionList: React.FC = () => {
     return transactions.slice(start, end);
   };
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page): void => {
     setPage(page);
+  };
+
+  const countTransactionsSum = (): number => {
+    let sum: number = 0;
+
+    transactions.map((transaction) => (sum += Number(transaction.euroValue)));
+
+    return sum;
   };
 
   return (
@@ -48,12 +78,25 @@ export const TransactionList: React.FC = () => {
         ))}
       </ListWrapper>
 
-      <Pagination
-        count={Math.ceil(transactions.length / 6)}
-        size="large"
-        color="primary"
-        onChange={(_, page) => handlePageChange(page)}
-      />
+      <Grid container>
+        <Grid item xs={6}>
+          <Pagination
+            count={Math.ceil(transactions.length / 6) || 1}
+            size="large"
+            color="primary"
+            page={page}
+            onChange={(_, page) => handlePageChange(page)}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <SumValue>{countTransactionsSum().toFixed(2)} EUR</SumValue>
+        </Grid>
+        <Grid item xs={2}>
+          <SumValue>
+            {(countTransactionsSum() * plnRate).toFixed(2)} PLN
+          </SumValue>
+        </Grid>
+      </Grid>
     </>
   );
 };

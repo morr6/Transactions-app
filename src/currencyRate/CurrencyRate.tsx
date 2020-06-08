@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Title, Rate } from "./CurrenctRate.s";
-import { getPlnRate } from "utilities/api/RateApi";
-import { toogleApiLoading } from "utilities/api/Actions";
-import { setPlnRate } from "./Actions";
+import React, { useEffect } from 'react';
+import { Title, Rate } from './CurrenctRate.s';
+import { getPlnRate } from 'utilities/api/RateApi';
+import { toogleApiLoading } from 'utilities/api/Actions';
+import { setPlnRate } from './Actions';
 
-import { useSelector, useDispatch } from "react-redux";
-import { selectPlnRate } from "app/selectors/selectors";
+import { useSelector, useDispatch } from 'react-redux';
+import { selectPlnRate } from 'app/selectors/selectors';
 
 export const CurrencyRate: React.FC = () => {
   const dispatch = useDispatch();
