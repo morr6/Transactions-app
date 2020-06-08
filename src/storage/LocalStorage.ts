@@ -1,9 +1,18 @@
-import { transaction as transitionProps } from "app/selectors/selectors";
+interface transitionProps {
+  name: string;
+  euroValue: number;
+  date: string;
+  id?: number;
+}
 
 export const getTransactionsFromStorage = () => {
-  let transactions = JSON.parse(localStorage.getItem("transactions") as string);
+  try {
+    let transactions = JSON.parse(localStorage.getItem("transactions") || "{}");
 
-  return transactions;
+    return transactions;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const initLocalStorage = (): void => {
@@ -22,23 +31,23 @@ export const addTransactionToStorage = ({
   euroValue,
   date,
 }: transitionProps): void => {
-  const newName = name.charAt(0).toUpperCase() + name.slice(1);
-
   localStorage.setItem(
     "transactions",
     JSON.stringify([
       {
         id: getTransactionsFromStorage() && generateTransactionId(),
-        name: newName,
+        transactionName: name,
         euroValue: euroValue,
-        date: date,
+        transactionDate: date,
       },
       ...getTransactionsFromStorage(),
     ])
   );
 };
 
-export const deleteTransactionFromStorage = (idsToRemove: number[]): void => {
+export const deleteTransactionFromStorage = (
+  idsToRemove: Array<number>
+): void => {
   localStorage.setItem(
     "transactions",
     JSON.stringify(
